@@ -1,0 +1,13 @@
+<div>
+<select ng-options="foodOption.name for foodOption in food" ng-model="newItem.selectedFood" required ng-show="newItem.selectedFood === undefined"></select>
+    <h3 ng-hide="newItem.selectedFood === undefined">{{newItem.selectedFood.name}}</h3>
+    <div ng-repeat="option in newItem.selectedFood.options">
+        <h4>{{option.name}}</h4>
+        <div ng-if="!option.isBoolean">
+            <select ng-options="value for value in option.values" ng-model="option.value" required></select>
+        </div>
+        <div ng-if="option.isBoolean">
+            <input name="{{option.name}}" type="checkbox" ng-model="option.value" value="true" />
+        </div>
+    </div>
+</div>

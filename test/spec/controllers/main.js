@@ -16,7 +16,7 @@ describe('Controller: MainCtrl', function () {
     });
   }));
 
-  it('should attach a list of orders to the scope', function () {
-    expect(scope.orders.length).toBe(3);
+  it('should attach a list of order dates to the scope', function () {
+    expect(scope.orderDates.length).toBe(4);
   });
 });

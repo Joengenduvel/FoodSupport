@@ -13,6 +13,39 @@ angular.module('foodSupportApp')
 
         $scope.newItem = {};
 
+        $scope.food = [
+            {
+                name: 'broodje',
+                options: [
+                    {
+                        name: 'brood',
+                        isBoolean: false,
+                        values: ['bruin', 'fitness', 'wit']
+                    },
+                    {
+                        name: 'beleg',
+                        isBoolean: false,
+                        values: ['martino','kaas en hesp', 'brie']
+                    },
+                    {
+                        name : 'smos',
+                        isBoolean: true,
+                        values: [true, false]
+                    }
+                ]
+            },
+            {
+                name: 'soep',
+                options: [
+                    {
+                        name : 'extra brood',
+                        isBoolean: true,
+                        values: [true, false]
+                    }
+                ]
+            }
+        ];
+
         $scope.orderDates = [
             {
                 date: new Date(2014,5,30),
@@ -75,11 +108,10 @@ angular.module('foodSupportApp')
                 ]
             }
         ];
-        $scope.activeOrderDate = getTodaysOrders();
 
-        function getTodaysOrders(){
+        this.getTodaysOrders = function (){
             for(var index in $scope.orderDates){
-                if($scope.orderDates[index].date.toDateString() === today){
+                if($scope.orderDates.hasOwnProperty(index) && $scope.orderDates[index].hasOwnProperty('date') && $scope.orderDates[index].date.toDateString() === today){
                     return $scope.orderDates[index];
                 }
             }
@@ -91,11 +123,33 @@ angular.module('foodSupportApp')
             return newOrderDate;
         };
 
+
+        $scope.activeOrderDate = this.getTodaysOrders();
+
         $scope.isTodaysOrder = function(){
             return $scope.activeOrderDate.date.toDateString() === today;
         };
 
+        function generateDescription(selectedFood) {
+            var description = selectedFood.name;
+            for(var index = 0; index < selectedFood.options.length; index++){
+                if(selectedFood.options[index].isBoolean) {
+                    //just write the name if the value is true
+                    if (selectedFood.options[index].value === true) {
+                        description += ' ' + selectedFood.options[index].name;
+                    }
+
+                }else{
+                    //just print the value
+                    description += ' ' + selectedFood.options[index].value;
+
+                }
+            }
+            return description;
+        }
+
         $scope.add = function(){
+            $scope.newItem.description = generateDescription($scope.newItem.selectedFood);
             $scope.activeOrderDate.orders.push($scope.newItem);
             $scope.newItem = {};
         };

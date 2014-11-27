@@ -1,15 +1,6 @@
 <div>
   <ul>
-      <li ng-repeat="item in food">
-          <h3>{{item.name}}</h3>
-          <ul>
-              <li ng-repeat="option in item.options">
-                      {{option.name}}
-                  <ul ng-if="!option.isBoolean">
-                      <li ng-repeat="value in option.values">{{value}}</li>
-                  </ul>
-              </li>
-          </ul>
+      <li ng-repeat="item in food" food-editor item="item">
       </li>
   </ul>
 </div>

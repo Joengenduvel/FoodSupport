@@ -8,43 +8,12 @@
  * Controller of the foodSupportApp
  */
 angular.module('foodSupportApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', function ($scope, foodService) {
         var today = new Date().toDateString();
 
         $scope.newItem = {};
 
-        $scope.food = [
-            {
-                name: 'broodje',
-                options: [
-                    {
-                        name: 'brood',
-                        isBoolean: false,
-                        values: ['bruin', 'fitness', 'wit']
-                    },
-                    {
-                        name: 'beleg',
-                        isBoolean: false,
-                        values: ['martino','kaas en hesp', 'brie']
-                    },
-                    {
-                        name : 'smos',
-                        isBoolean: true,
-                        values: [true, false]
-                    }
-                ]
-            },
-            {
-                name: 'soep',
-                options: [
-                    {
-                        name : 'extra brood',
-                        isBoolean: true,
-                        values: [true, false]
-                    }
-                ]
-            }
-        ];
+        $scope.food = foodService.getFoodList();
 
         $scope.orderDates = [
             {

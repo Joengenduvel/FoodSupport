@@ -4,6 +4,7 @@ angular.module('foodSupportApp').directive('foodEditor', function () {
     return {
         restrict: 'A',
         templateUrl: 'views/templates/foodEditor.html',
+        transclude: true,
         scope: {
             foodEditorItem: '=item'
         },

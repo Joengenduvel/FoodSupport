@@ -4,3 +4,11 @@
         <button ng-click="addOptionValue(newOptionValue); newOptionValue='';">add</button>
     </li>
 </ul>
+<ul ng-if="foodOption.isBoolean">
+    <li>
+        <input type="text" ng-model="foodOption.values[0]">
+    </li>
+    <li>
+        <input type="text" ng-model="foodOption.values[1]">
+    </li>
+</ul>

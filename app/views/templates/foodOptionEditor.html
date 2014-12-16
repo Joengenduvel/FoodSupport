@@ -1,0 +1,6 @@
+<ul ng-if="!foodOption.isBoolean">
+    <li ng-repeat="value in foodOption.values">{{value}}</li>
+    <li><input type="text" ng-model="newOptionValue"/>
+        <button ng-click="addOptionValue(newOptionValue); newOptionValue='';">add</button>
+    </li>
+</ul>

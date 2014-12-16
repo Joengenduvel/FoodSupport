@@ -2,14 +2,11 @@
 <ul>
     <li ng-repeat="option in foodEditorItem.options">
         {{option.name}}
-        <ul ng-if="!option.isBoolean">
-            <li ng-repeat="value in option.values">{{value}}</li>
-            <li><input type="text" ng-model="newOptionValue"/><button ng-click="addOption(newOptionValue, option)">add</button></li>
-        </ul>
+        <div food-option-editor item="option"></div>
     </li>
     <li>
         <input type="text" ng-model="newOption.name"/>
         <input type="checkbox" ng-model="newOption.isBoolean" />
-        <button ng-click="addOption(newOption)">add option</button>
+        <button ng-click="addOption(newOption); newOption={};">add option</button>
     </li>
 </ul>

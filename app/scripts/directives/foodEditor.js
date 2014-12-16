@@ -5,14 +5,12 @@ angular.module('foodSupportApp').directive('foodEditor', function () {
         restrict: 'A',
         templateUrl: 'views/templates/foodEditor.html',
         scope: {
-            foodEditorItem: '=item',
-            newOptionValue: '='
+            foodEditorItem: '=item'
         },
         link: function (scope) {
-            scope.addOption = function () {
-                scope.foodEditorItem.options.push(scope.newOption);
-                scope.newOption = {};
-
+            scope.addOption = function (newOption) {
+                newOption.values = [];
+                scope.foodEditorItem.options.push(newOption);
             };
         }
     };
